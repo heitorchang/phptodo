@@ -1,0 +1,107 @@
+PHPTodo
+
+Replacement for round-apps/todolists
+
+Follow structure of ALEXIE Beans
+
+* header.php
+
+// db connection
+
+date_default_timezone_set("America/Sao_Paulo");
+
+echo date('d/m/Y/ H:i:s', time()))
+
+
+* .gitignore
+
+config_secret.php
+
+
+MODELS
+
+todolist
+  id
+  name
+
+  
+todo
+  id
+  todolist_id
+  name
+  due_datetime
+  
+
+weekdaytodo
+  // 0 is Sunday, 6 is Saturday
+  id
+  weekday
+  name
+  
+
+dayofmonthtodo
+  id
+  day_of_month
+  name
+
+  
+autoweekdaylog
+  // a row is created to indicate that the app generated a weekdaytodo or dayofmonthtodo (so that they are not created more than once)
+  id
+  log_date  // date when the autotodo was created
+  todo_id
+
+
+autodayofmonthlog
+  id
+  log_date
+  todo_id
+
+  
+URLs
+
+* install.php
+    creates tables
+
+	
+LISTS
+
+* new_list.php
+    CREATE list
+    
+* list.php?id=1
+    READ list
+	if no id is given, show all todos
+    retrieves todos for given list id, contains link to new_todo.php?list=1
+	
+* edit_list.php?id=1
+    UPDATE list (change its name)
+
+* confirm_delete_list.php?id=1
+* exec_delete_list.php?id=1
+    DELETE list (remove associated todos first)
+
+	
+TODOS
+
+* new_todo.php?list=1
+    CREATE todo
+	create a new todo in given list (link to this page comes from a list)
+
+*   READ todos in list.php
+	
+* edit_todo.php?id=1
+    UPDATE todo
+	edit name, due datetime
+edit the todo with the given id
+
+* confirm_delete.php?id=1&redirect=1
+* exec_delete.php?id=1&redirect=1
+    DELETE todo
+    keep track of which list id to go back to
+    delete then redirect to given list id
+
+
+WEEKDAY/DAY OF MONTH TODOS
+
+these are infrequently modified, so use PHPMyAdmin
