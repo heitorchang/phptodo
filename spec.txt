@@ -41,7 +41,7 @@ weekdaytodo
 
 dayofmonthtodo
   id
-  day_of_month
+  dayofmonth
   name
 
   
