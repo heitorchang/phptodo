@@ -13,10 +13,6 @@
 
 	[<?= date("Y-m-d H:i", time()) ?>]
 
-	<a href="new_list.php">New List</a> | 
-	<a href="weekday.php">Weekday Todos</a> | 
-	<a href="dayofmonth.php">Day of Month Todos</a> | 
-
 	<?php
 	   
 $sql = "SELECT id, name FROM todolist ORDER BY name";
@@ -30,6 +26,9 @@ echo "<a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . "</a> | "
 
 	   ?>
 
+	<a href="weekday.php">(Weekday)</a> | 
+	<a href="dayofmonth.php">(Day of Month)</a> |
+	<a href="new_list.php">New List</a> | 
 	<a href="trash.php">Trash</a>
 
 	<hr>
