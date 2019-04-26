@@ -13,7 +13,7 @@ echo $name_row['name'];
 
 // try creating weekday todo
 
-$weekday_sql = "SELECT id, name FROM weekdaytodo WHERE todolist_id = :id";
+$weekday_sql = "SELECT id, weekday, name FROM weekdaytodo WHERE todolist_id = :id";
 
 $stmt = $dbh->prepare($weekday_sql);
 $stmt->execute([":id" => $_GET['id']]);
@@ -32,6 +32,7 @@ $autoweekday_stmt->execute([":log_date" => date("Y-m-d", time()),
 if ($autoweekday_stmt->fetch()['count_id'] === 0) {
 
 // create autoweekdaytodo
+if (date("w", time()) == $weekday['weekday']) {
 $autoweekdayinsert_sql = "INSERT INTO todo (todolist_id, name, due_datetime)
 VALUES (:todolist_id, :name, :due_datetime)";
 
@@ -52,8 +53,52 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 
 }
 
+}
+
 
 // try creating day of month todo
+
+$dayofmonth_sql = "SELECT id, dayofmonth, name FROM dayofmonthtodo WHERE todolist_id = :id";
+
+$stmt = $dbh->prepare($dayofmonth_sql);
+$stmt->execute([":id" => $_GET['id']]);
+
+$dayofmonths = $stmt->fetchAll();
+
+foreach ($dayofmonths as $dayofmonth) {
+
+// check if id is in autodayofmonthlog
+$autodayofmonth_sql = "SELECT count(id) AS count_id FROM autodayofmonthlog
+WHERE log_date = :log_date AND todo_id = :todo_id";
+$autodayofmonth_stmt = $dbh->prepare($autodayofmonth_sql);
+$autodayofmonth_stmt->execute([":log_date" => date("Y-m-d", time()),
+":todo_id" => $dayofmonth['id']]);
+
+if ($autodayofmonth_stmt->fetch()['count_id'] === 0) {
+
+// create autodayofmonthtodo
+if (date("d", time()) == $dayofmonth['dayofmonth']) {
+$autodayofmonthinsert_sql = "INSERT INTO todo (todolist_id, name, due_datetime)
+VALUES (:todolist_id, :name, :due_datetime)";
+
+$stmt = $dbh->prepare($autodayofmonthinsert_sql);
+$stmt->execute([":todolist_id" => $_GET['id'],
+":name" => "[auto] " . $dayofmonth['name'],
+":due_datetime" => date("Y-m-d", time()) . " " . date("H:00", time())]);
+
+// save into log
+$autodayofmonthlog_sql = "INSERT INTO autodayofmonthlog (log_date, todo_id)
+VALUES (:log_date, :todo_id)";
+
+$stmt = $dbh->prepare($autodayofmonthlog_sql);
+$stmt->execute([":log_date" => date("Y-m-d", time()),
+":todo_id" => $dayofmonth['id']]);
+
+}
+
+}
+
+}
 
 ?>
 
