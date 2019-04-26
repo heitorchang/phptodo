@@ -29,15 +29,21 @@ echo "Table todo created";
 $dbh->exec("CREATE TABLE IF NOT EXISTS weekdaytodo
 (id int not null auto_increment,
 weekday int not null,
+todolist_id int not null,
 name varchar(80) not null,
-constraint pk_weekdaytodo primary key (id)) engine=InnoDB");
+constraint pk_weekdaytodo primary key (id),
+constraint fk_weekday_todolist foreign key (todolist_id)
+references todolist (id)) engine=InnoDB");
 echo "Table weekdaytodo created";
 
 $dbh->exec("CREATE TABLE IF NOT EXISTS dayofmonthtodo
 (id int not null auto_increment,
 dayofmonth int not null,
+todolist_id int not null,
 name varchar(80) not null,
-constraint pk_dayofmonthtodo primary key (id)) engine=InnoDB");
+constraint pk_dayofmonthtodo primary key (id),
+constraint fk_dayofmonth_todolist foreign key (todolist_id)
+references todolist (id)) engine=InnoDB");
 echo "Table dayofmonthtodo created";
 
 $dbh->exec("CREATE TABLE IF NOT EXISTS autoweekdaylog

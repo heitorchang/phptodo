@@ -7,6 +7,8 @@
 
   <body>
 	<a href="new_list.php">New List</a> | 
+	<a href="weekday.php">Weekday Todos</a> | 
+	<a href="dayofmonth.php">Day of Month Todos</a> | 
 
 	<?php
 	   require("db.php");
