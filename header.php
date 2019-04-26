@@ -30,5 +30,6 @@ echo "<a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . "</a> | "
 
 	   ?>
 
+	<a href="trash.php">Trash</a>
 
 	<hr>
