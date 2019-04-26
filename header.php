@@ -5,15 +5,20 @@
     <title>PHPTodo</title>
   </head>
 
-  <body>
+  <body>	
+	<?php
+	   require("db.php");
+	   date_default_timezone_set('America/Sao_Paulo');
+	   ?>
+
+	[<?= date("Y-m-d H:i", time()) ?>]
+
 	<a href="new_list.php">New List</a> | 
 	<a href="weekday.php">Weekday Todos</a> | 
 	<a href="dayofmonth.php">Day of Month Todos</a> | 
 
 	<?php
-	   require("db.php");
-	   date_default_timezone_set('America/Sao_Paulo');
-
+	   
 $sql = "SELECT id, name FROM todolist ORDER BY name";
 
 $stmt = $dbh->prepare($sql);
