@@ -12,7 +12,7 @@ if ($stmt->rowCount() === 0) {
 
 $dbh->exec("CREATE TABLE IF NOT EXISTS todo_trash
 (id int not null auto_increment,
-name varchar(80) not null,
+name varchar(300) not null,
 date_trashed datetime not null,
 constraint pk_todolist primary key (id)) engine=InnoDB");
 echo "Table todo_trash created";

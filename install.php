@@ -18,7 +18,7 @@ echo "Table todolist created";
 
 $dbh->exec("CREATE TABLE IF NOT EXISTS todo
 (id int not null auto_increment,
-name varchar(80) not null,
+name varchar(300) not null,
 todolist_id int not null,
 due_datetime datetime not null,
 constraint pk_todo primary key (id),
