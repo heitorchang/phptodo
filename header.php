@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta charset="utf-8">
-    <title>PHPTodo</title>
+	 <meta charset="utf-8">
+     <title>PHPTodo</title>
+     <style>
+     td {
+     padding-right: 10px;
+     padding-bottom: 22px;
+     }
+     </style>
   </head>
 
   <body>	
@@ -11,7 +17,7 @@
 	   date_default_timezone_set('America/Sao_Paulo');
 	   ?>
 
-	[<?= date("Y-m-d H:i", time()) ?>]
+       <?= date("d/M/y H:i", time()) ?> &bullet;
 
 	<?php
 	   
@@ -21,14 +27,14 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
 foreach ($stmt as $row) {
-echo "<a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . "</a> | ";
+echo "<a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . "</a> &bullet; ";
 }
 
 	   ?>
 
-	<a href="weekday.php">(Weekday)</a> | 
-	<a href="dayofmonth.php">(Day of Month)</a> |
-	<a href="new_list.php">New List</a> | 
-	<a href="trash.php">Trash</a>
+	<a href="weekday.php">weekday</a> &bullet; 
+	<a href="dayofmonth.php">dayofmonth</a> &bullet;
+	<a href="new_list.php">new list</a> &bullet; 
+	<a href="trash.php">trash</a>
 
-	<hr>
+<br>

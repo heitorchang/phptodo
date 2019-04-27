@@ -109,10 +109,12 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 
 ?>
 
-<a href="new_todo.php?id=<?= $_GET['id'] ?>">New Todo</a>
+<a href="new_todo.php?id=<?= $_GET['id'] ?>">New todo</a>
 
 <br><br>
 
+    <table>
+    
 <?php
 
 $todo_sql = "SELECT id, name, due_datetime FROM todo WHERE todolist_id = :todolist_id ORDER BY due_datetime";
@@ -121,7 +123,15 @@ $stmt = $dbh->prepare($todo_sql);
 $stmt->execute(["todolist_id" => $_GET['id']]);
 
 foreach ($stmt as $row) {
-echo $row['name'] . " " . $row['due_datetime'] . " <a href='exec_delete_todo.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>DELETE</a> <br><br>";
+    echo "<tr>";
+    
+    echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
+    echo "<td><a href='exec_delete_todo.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>DELETE</a></td>";
+    echo "<td>" . $row['name'] . "</td>";
+    
+    echo "</tr>";
 }
 
 ?>
+
+</table>
