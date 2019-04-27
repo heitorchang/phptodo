@@ -55,8 +55,6 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 
 }
 
-echo "<pre>";
-
 // try creating day of month todo
 
 $today_day = (int) date("d",  time());
@@ -70,8 +68,6 @@ $stmt->execute([":id" => $_GET['id'],
 $dayofmonths = $stmt->fetchAll();
 
 foreach ($dayofmonths as $dayofmonth) {
-
-    echo "CHECKING {$dayofmonth['dayofmonth']}\n";
 
     $first_of_month = date("Y-m", time()) . "-01";
     
@@ -112,8 +108,6 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 }
 
 ?>
-
-</pre>
 
 <a href="new_todo.php?id=<?= $_GET['id'] ?>">New Todo</a>
 
