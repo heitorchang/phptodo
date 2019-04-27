@@ -55,29 +55,40 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 
 }
 
+echo "<pre>";
 
 // try creating day of month todo
 
-$dayofmonth_sql = "SELECT id, dayofmonth, name FROM dayofmonthtodo WHERE todolist_id = :id";
+$today_day = (int) date("d",  time());
+
+$dayofmonth_sql = "SELECT id, dayofmonth, name FROM dayofmonthtodo WHERE todolist_id = :id AND dayofmonth <= :day_of_month";
 
 $stmt = $dbh->prepare($dayofmonth_sql);
-$stmt->execute([":id" => $_GET['id']]);
+$stmt->execute([":id" => $_GET['id'],
+                ":day_of_month" => $today_day]);
 
 $dayofmonths = $stmt->fetchAll();
 
 foreach ($dayofmonths as $dayofmonth) {
 
+    echo "CHECKING {$dayofmonth['dayofmonth']}\n";
+
+    $first_of_month = date("Y-m", time()) . "-01";
+    
 // check if id is in autodayofmonthlog
 $autodayofmonth_sql = "SELECT count(id) AS count_id FROM autodayofmonthlog
-WHERE log_date = :log_date AND todo_id = :todo_id";
+WHERE log_date >= :log_date_start AND log_date <= :log_date_end AND todo_id = :todo_id";
+
 $autodayofmonth_stmt = $dbh->prepare($autodayofmonth_sql);
-$autodayofmonth_stmt->execute([":log_date" => date("Y-m-d", time()),
-":todo_id" => $dayofmonth['id']]);
+$autodayofmonth_stmt->execute([":log_date_start" => $first_of_month,
+                               ":log_date_end" => date("Y-m-d", time()),
+                               ":todo_id" => $dayofmonth['id']]);
 
 if ($autodayofmonth_stmt->fetch()['count_id'] === 0) {
 
 // create autodayofmonthtodo
-if (date("d", time()) == $dayofmonth['dayofmonth']) {
+if ($dayofmonth['dayofmonth'] <= date('d', time())) {
+        
 $autodayofmonthinsert_sql = "INSERT INTO todo (todolist_id, name, due_datetime)
 VALUES (:todolist_id, :name, :due_datetime)";
 
@@ -101,6 +112,8 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 }
 
 ?>
+
+</pre>
 
 <a href="new_todo.php?id=<?= $_GET['id'] ?>">New Todo</a>
 
