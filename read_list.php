@@ -9,7 +9,7 @@ $stmt->execute(["id" => $_GET['id']]);
 
 $name_row = $stmt->fetch();
 
-echo $name_row['name'];
+echo '<h3>' . $name_row['name'] . '</h3>';
 
 // try creating weekday todo
 
@@ -101,8 +101,6 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 }
 
 ?>
-
-<br><br>
 
 <a href="new_todo.php?id=<?= $_GET['id'] ?>">New Todo</a>
 
