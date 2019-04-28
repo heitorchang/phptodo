@@ -4,9 +4,14 @@
 	 <meta charset="utf-8">
      <title>PHPTodo</title>
      <style>
+     a {
+     text-decoration: none;
+     font-weight: bold;
+     }
+     
      td {
-     padding-right: 10px;
-     padding-bottom: 22px;
+     padding-right: 7px;
+     padding-bottom: 18px;
      }
      </style>
   </head>

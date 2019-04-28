@@ -124,9 +124,23 @@ $stmt->execute(["todolist_id" => $_GET['id']]);
 
 foreach ($stmt as $row) {
     echo "<tr>";
+
+    $now_date_created = date_create(date('Y-m-d', time()));
+    $todo_date_created = date_create(date('Y-m-d', strtotime($row['due_datetime'])));
+
+    if ($todo_date_created == $now_date_created) {
+        $due_label = "<i>today</i>";
+    } else if ($todo_date_created < $now_date_created) {
+        $due_label = "<b>overdue</b>";
+    } else {
+        $due_label = date_diff($now_date_created, $todo_date_created)->format("in %a day(s)");
+    }
+    
+    echo "<td>" . $due_label . "</td>";
     
     echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
-    echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>DELETE</a></td>";
+    echo "<td><a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}'>edit</a></td>";
+    echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>delete</a></td>";
     echo "<td>" . $row['name'] . "</td>";
     
     echo "</tr>";
