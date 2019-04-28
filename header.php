@@ -13,6 +13,20 @@
      padding-right: 7px;
      padding-bottom: 18px;
      }
+
+.overdue {
+    font-weight: bold;
+     color: #a11;
+ }
+.today {
+    font-style: italic;
+     color: #162;
+ }
+.tomorrow {
+    font-weight: bold;
+    font-style: italic;
+     color: #159;
+ }
      </style>
   </head>
 

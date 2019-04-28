@@ -131,11 +131,16 @@ foreach ($stmt as $row) {
     $todo_date_created = date_create(date('Y-m-d', strtotime($row['due_datetime'])));
 
     if ($todo_date_created == $now_date_created) {
-        $due_label = "<i>today</i>";
+        $due_label = "<span class='today'>today</span>";
     } else if ($todo_date_created < $now_date_created) {
-        $due_label = "<b>overdue</b>";
+        $due_label = "<span class='overdue'>overdue</span>";
     } else {
-        $due_label = date_diff($now_date_created, $todo_date_created)->format("in %a day(s)");
+        $days_due = (int) date_diff($now_date_created, $todo_date_created)->days;
+        if ($days_due === 1) {
+            $due_label = "<span class='tomorrow'>tomorrow</span>";
+        } else {
+            $due_label = "in $days_due days";
+        }
     }
     
     echo "<td>" . $due_label . "</td>";
