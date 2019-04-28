@@ -19,7 +19,7 @@ $todo_time = date("H:i:00", strtotime($row['due_datetime']));
 <input name="todo_id" type="hidden" value="<?= $_GET['todo_id'] ?>">
 <input name="todolist_id" type="hidden" value="<?= $_GET['id'] ?>">
 
-Name: <input name="name" size="70" value="<?= $row['name'] ?>" autofocus><br>
+Name: <input name="name" size="70" value="<?= htmlspecialchars($row['name']) ?>" autofocus><br>
 Date: <input name="date" type="date" value="<?= $todo_date ?>"><br>
 Time: <input name="time" type="time" value="<?= $todo_time ?>"><br>
 <br>
