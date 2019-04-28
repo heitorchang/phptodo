@@ -57,7 +57,7 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 
 // try creating day of month todo
 
-$today_day = (int) date("d",  time());
+$today_day = (int) date("j",  time());
 
 $dayofmonth_sql = "SELECT id, dayofmonth, name FROM dayofmonthtodo WHERE todolist_id = :id AND dayofmonth <= :day_of_month";
 
