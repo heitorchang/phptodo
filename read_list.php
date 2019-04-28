@@ -122,6 +122,8 @@ $todo_sql = "SELECT id, name, due_datetime FROM todo WHERE todolist_id = :todoli
 $stmt = $dbh->prepare($todo_sql);
 $stmt->execute(["todolist_id" => $_GET['id']]);
 
+$link_pat = '~(http[s]?:\/\/\S*)~';
+
 foreach ($stmt as $row) {
     echo "<tr>";
 
@@ -141,7 +143,7 @@ foreach ($stmt as $row) {
     echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
     echo "<td><a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}'>edit</a></td>";
     echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>delete</a></td>";
-    echo "<td>" . $row['name'] . "</td>";
+    echo "<td>" . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
     
     echo "</tr>";
 }
