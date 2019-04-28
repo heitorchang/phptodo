@@ -117,7 +117,7 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
     
 <?php
 
-$todo_sql = "SELECT id, name, due_datetime FROM todo WHERE todolist_id = :todolist_id ORDER BY due_datetime";
+    $todo_sql = "SELECT id, name, due_datetime FROM todo WHERE todolist_id = :todolist_id ORDER BY due_datetime, id";
 
 $stmt = $dbh->prepare($todo_sql);
 $stmt->execute(["todolist_id" => $_GET['id']]);
