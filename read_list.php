@@ -126,7 +126,7 @@ foreach ($stmt as $row) {
     echo "<tr>";
     
     echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
-    echo "<td><a href='exec_delete_todo.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>DELETE</a></td>";
+    echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>DELETE</a></td>";
     echo "<td>" . $row['name'] . "</td>";
     
     echo "</tr>";
