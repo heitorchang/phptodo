@@ -19,13 +19,13 @@
      color: #a11;
  }
 .today {
+    font-weight: bold;
     font-style: italic;
      color: #162;
  }
 .tomorrow {
-    font-weight: bold;
     font-style: italic;
-     color: #159;
+     color: #138;
  }
      </style>
   </head>
