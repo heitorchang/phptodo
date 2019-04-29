@@ -15,6 +15,10 @@
      padding-bottom: 18px;
      }
 
+	 li {
+	 margin-bottom: 12px;
+	 }
+
 .overdue {
     font-weight: bold;
      color: #a11;
