@@ -144,12 +144,11 @@ foreach ($stmt as $row) {
     }
     
     echo "<td>" . $due_label . "</td>";
-    
-    echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
+    echo "<td nowrap>" . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
     echo "<td><a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}'>edit</a></td>";
     echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>delete</a></td>";
-    echo "<td nowrap>" . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
-    
+    echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
+
     echo "</tr>";
 }
 
