@@ -3,36 +3,8 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>PHPTodo</title>
-     <style>
-     a {
-     text-decoration: none;
-     font-weight: bold;
-     }
-     
-     td {
-     padding-right: 7px;
-     padding-bottom: 18px;
-     }
-
-	 li {
-	 margin-bottom: 12px;
-	 }
-
-.overdue {
-    font-weight: bold;
-     color: #a11;
- }
-.today {
-    font-weight: bold;
-    font-style: italic;
-     color: #162;
- }
-.tomorrow {
-    font-style: italic;
-     color: #138;
- }
-     </style>
+    <title>PHPTodo</title>
+	<link rel="stylesheet" href="style.css">
   </head>
 
   <body>	
