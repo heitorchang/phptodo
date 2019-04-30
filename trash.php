@@ -18,7 +18,7 @@ $items = $stmt->fetchAll();
 foreach ($items as $item) {
 ?>
 
-<li><?= $item['name'] ?> <?= $item['date_trashed'] ?></li>
+<li><?= $item['date_trashed'] ?> <?= $item['name'] ?></li>
 
 <?php
 }
