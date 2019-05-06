@@ -39,7 +39,7 @@ VALUES (:todolist_id, :name, :due_datetime)";
 $stmt = $dbh->prepare($autoweekdayinsert_sql);
 $stmt->execute([":todolist_id" => $_GET['id'],
 ":name" => "[auto] " . $weekday['name'],
-":due_datetime" => date("Y-m-d", time()) . " " . date("H:00", time())]);
+":due_datetime" => date("Y-m-d", time()) . " " . date("H:00", time() + 4500)]);
 
 // save into log
 $autoweekdaylog_sql = "INSERT INTO autoweekdaylog (log_date, todo_id)
@@ -91,7 +91,7 @@ VALUES (:todolist_id, :name, :due_datetime)";
 $stmt = $dbh->prepare($autodayofmonthinsert_sql);
 $stmt->execute([":todolist_id" => $_GET['id'],
 ":name" => "[auto] " . $dayofmonth['name'],
-":due_datetime" => date("Y-m-d", time()) . " " . date("H:00", time())]);
+":due_datetime" => date("Y-m-d", time()) . " " . date("H:00", time() + 4500)]);
 
 // save into log
 $autodayofmonthlog_sql = "INSERT INTO autodayofmonthlog (log_date, todo_id)
