@@ -132,6 +132,9 @@ foreach ($stmt as $row) {
 
     if ($todo_date_created == $now_date_created) {
         $due_label = "<span class='today'>today</span>";
+        if (date_create(date('Y-m-d H:i', strtotime($row['due_datetime']))) < date_create(date('Y-m-d H:i', time()))) {
+            $due_label = "<span class='overdue'>overdue</span>";
+        }
     } else if ($todo_date_created < $now_date_created) {
         $due_label = "<span class='overdue'>overdue</span>";
     } else {
