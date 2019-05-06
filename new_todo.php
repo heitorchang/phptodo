@@ -11,7 +11,7 @@ require("header.php");
 
 Name: <input name="name" size="70" autofocus><br>
 Date: <input name="date" type="date" value="<?= date('Y-m-d', time() + 3600) ?>"><br>
-Time: <input name="time" type="time" value="<?= date('H:i', time() + 3600) ?>"><br>
+Time: <input name="time" type="time" value="<?= date('H:00', time() + 3600) ?>"><br>
 <br>
 <input type="submit">
 </form>
