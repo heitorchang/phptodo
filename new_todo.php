@@ -10,8 +10,8 @@ require("header.php");
 <input name="todolist_id" type="hidden" value="<?= $_GET['id'] ?>">
 
 Name: <input name="name" size="70" autofocus><br>
-Date: <input name="date" type="date" value="<?= date('Y-m-d', time() + 3600) ?>"><br>
-Time: <input name="time" type="time" value="<?= date('H:00', time() + 3600) ?>"><br>
+Date: <input name="date" type="date" value="<?= date('Y-m-d', time() + 4500) ?>"><br>
+Time: <input name="time" type="time" value="<?= date('H:00', time() + 4500) ?>"><br>
 <br>
 <input type="submit">
 </form>
