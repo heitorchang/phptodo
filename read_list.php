@@ -150,7 +150,7 @@ foreach ($stmt as $row) {
 
     echo "<a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}' id='edit_{$row['id']}'>edit</a>";
 
-    echo "<a href='exec_delete_todo.php?todo_id={$row['id']}&todolist_id={$_GET['id']}' id='delete_{$row['id']}' style='display: none;'>delete</a>";
+    echo "<a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}' id='delete_{$row['id']}' style='display: none;'>delete</a>";
 
     echo "</td>";
     
