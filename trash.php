@@ -10,7 +10,7 @@ require("header.php");
 
 <?php
 
-$trash_sql = "SELECT id, name, date_trashed FROM todo_trash ORDER BY date_trashed DESC LIMIT 100";
+$trash_sql = "SELECT name, date_trashed FROM todo_trash ORDER BY date_trashed DESC LIMIT 100";
 
 $stmt = $dbh->query($trash_sql);
 $items = $stmt->fetchAll();
@@ -18,7 +18,7 @@ $items = $stmt->fetchAll();
 foreach ($items as $item) {
 ?>
 
-<li><?= $item['date_trashed'] ?> (<?= $item['id'] ?>) <?= $item['name'] ?></li>
+<li><?= $item['date_trashed'] ?> <?= $item['name'] ?></li>
 
 <?php
 }

@@ -16,7 +16,7 @@ $sql = "INSERT INTO todo_trash (name, date_trashed)
 VALUES (:name, :date_trashed)";
 
 $stmt = $dbh->prepare($sql);
-$stmt->execute([":name" => $todo_name,
+$stmt->execute([":name" => "(" . $_GET['todo_id'] . ") " . $todo_name,
 ":date_trashed" => date("Y-m-d H:i:s", time())]);
 
 
