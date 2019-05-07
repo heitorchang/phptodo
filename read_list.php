@@ -146,15 +146,34 @@ foreach ($stmt as $row) {
         }
     }
     
-    echo "<td>" . $due_label . "</td>";
-    echo "<td nowrap><input type='checkbox'> " . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
-    echo "<td><a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}'>edit</a></td>";
-    echo "<td><a href='confirm_delete.php?todo_id={$row['id']}&todolist_id={$_GET['id']}'>delete</a></td>";
-    echo "<td>" . date("d/M/y H:i", strtotime($row['due_datetime'])) . "</td>";
+    echo "<td>" . $due_label . "<br><span class='dmh'>" . date("d/M H:i", strtotime($row['due_datetime'])) . "</span><br>";
 
+    echo "<a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}' id='edit_{$row['id']}'>edit</a>";
+
+    echo "<a href='exec_delete_todo.php?todo_id={$row['id']}&todolist_id={$_GET['id']}' id='delete_{$row['id']}' style='display: none;'>delete</a>";
+
+    echo "</td>";
+    
+    echo "<td nowrap><input type='checkbox' id='checkbox_{$row['id']}' onclick='togglelink({$row['id']});'> " . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
+    
     echo "</tr>";
 }
 
 ?>
 
 </table>
+
+<script>
+function togglelink(id) {
+  var boxstate = document.getElementById("checkbox_" + id).checked;
+  var el = document.getElementById("edit_" + id);
+  var dl = document.getElementById("delete_" + id);
+  if (boxstate) {
+     el.style = "display: none;";
+     dl.style = "display: block;";
+  } else {
+     dl.style = "display: none;";
+     el.style = "display: block;";
+  }  
+}
+</script>
