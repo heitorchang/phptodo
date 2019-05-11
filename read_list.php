@@ -146,7 +146,7 @@ foreach ($stmt as $row) {
         }
     }
     
-    echo "<td nowrap>" . $due_label . "<br><span class='dmh'>" . date("d/M H:i", strtotime($row['due_datetime'])) . "</span><br>";
+    echo "<td nowrap>" . $due_label . "<br><span class='dmh'>" . date("d M H:i", strtotime($row['due_datetime'])) . "</span><br>";
 
     echo "<a href='edit_todo.php?todo_id={$row['id']}&id={$_GET['id']}' id='edit_{$row['id']}'>edit</a>";
 
