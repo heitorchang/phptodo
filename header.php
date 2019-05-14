@@ -19,13 +19,13 @@
 
 $count_sql = "SELECT count(todolist_id) as ct, todolist_id FROM todo WHERE 1 GROUP BY todolist_id";
 
-$stmt = $dbh->prepare($sql);
+$stmt = $dbh->prepare($count_sql);
 $stmt->execute();
 
 $count_array = array();
         
         foreach ($stmt as $row) {
-        $count_array[$row['todolist_id'] = $row['ct'];
+        $count_array[$row['todolist_id']] = $row['ct'];
         }
         
 $sql = "SELECT id, name FROM todolist ORDER BY name";
@@ -34,8 +34,8 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
         foreach ($stmt as $row) {
-        if (in_array($row['id'], $count_array) {
-        $ct = $count_array[$row['id']);
+        if (array_key_exists($row['id'], $count_array)) {
+        $ct = $count_array[$row['id']];
         } else {
         $ct = 0;
         }
