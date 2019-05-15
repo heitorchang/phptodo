@@ -13,7 +13,7 @@
 	   date_default_timezone_set('America/Sao_Paulo');
 	   ?>
 
-       <?= date("d/M/y H:i", time()) ?> &bullet;
+       <?= date("d/M/y H:i", time()) ?>
 
 	<?php
 
@@ -40,10 +40,11 @@ $stmt->execute();
         $ct = 0;
         }
         
-echo "<a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . " (" . $ct . ")</a> &bullet; ";
+echo " &bullet; <a href='read_list.php?id=" . $row['id'] . "'>" . $row['name'] . " (" . $ct . ")</a> ";
 }
 
-	   ?>
+	?>
+	<br><br>
 
 	<a href="weekday.php">weekday</a> &bullet; 
 	<a href="dayofmonth.php">dayofmonth</a> &bullet;
