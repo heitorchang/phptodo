@@ -1,5 +1,5 @@
 <?php
-require_once("config_secret.php");
+require("config_secret.php");
 
 $dsn = "mysql:host=$dbhost;dbname=$dbname;charset=utf8";
 

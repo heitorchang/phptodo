@@ -1,15 +1,6 @@
 <?php
 
-require("header.php");
-
-$name_sql = "SELECT name FROM todolist WHERE id = :id";
-
-$stmt = $dbh->prepare($name_sql);
-$stmt->execute(["id" => $_GET['id']]);
-
-$name_row = $stmt->fetch();
-
-echo '<h3>' . $name_row['name'] . '</h3>';
+require("db.php");
 
 // try creating weekday todo
 
@@ -106,6 +97,20 @@ $stmt->execute([":log_date" => date("Y-m-d", time()),
 }
 
 }
+
+
+// proceed with page creation
+
+require("header.php");
+
+$name_sql = "SELECT name FROM todolist WHERE id = :id";
+
+$stmt = $dbh->prepare($name_sql);
+$stmt->execute(["id" => $_GET['id']]);
+
+$name_row = $stmt->fetch();
+
+echo '<h3>' . $name_row['name'] . '</h3>';
 
 ?>
 
