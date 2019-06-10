@@ -1,6 +1,7 @@
 <?php
 
 require("db.php");
+date_default_timezone_set('America/Sao_Paulo');
 
 // try creating weekday todo
 
