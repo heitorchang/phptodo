@@ -13,7 +13,7 @@
 	   date_default_timezone_set('America/Sao_Paulo');
 	   ?>
 
-       <?= date("d/M/y H:i", time()) ?>
+       <?= date("d M H:i", time()) ?>
 
 	<?php
 
