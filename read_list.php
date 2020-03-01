@@ -168,5 +168,5 @@ foreach ($stmt as $row) {
 ?>
 
 </table>
-
+<br><br><br><br><br>
 <script src="editdel.js"></script>
