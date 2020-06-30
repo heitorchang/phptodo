@@ -160,7 +160,7 @@ foreach ($stmt as $row) {
 
     echo "</td>";
     
-    echo "<td nowrap><input type='checkbox' id='checkbox_{$row['id']}' onclick='togglelink({$row['id']});'> " . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
+    echo "<td nowrap><input type='checkbox' id='checkbox_{$row['id']}' onchange='togglelink({$row['id']});'> " . preg_replace($link_pat, "<a href='$1' target='_blank'>$1</a>", $row['name']) . "</td>";
     
     echo "</tr>";
 }
